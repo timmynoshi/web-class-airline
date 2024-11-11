@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Satisfaction Prediction</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 700px;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Customer Satisfaction Prediction</h2>
+        <form id="prediction-form">
+            <div class="mb-3">
+                <label for="Age" class="form-label">Age:</label>
+                <input type="number" class="form-control" id="Age" name="Age" required>
+            </div>
+            <div class="mb-3">
+                <label for="Flight_Distance" class="form-label">Flight Distance:</label>
+                <input type="number" class="form-control" id="Flight_Distance" name="Flight_Distance" required>
+            </div>
+            <div class="mb-3">
+                <label for="Gender" class="form-label">Gender:</label>
+                <select class="form-select" id="Gender" name="Gender" required>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="Customer_Type" class="form-label">Customer Type:</label>
+                <select class="form-select" id="Customer_Type" name="Customer_Type" required>
+                    <option value="Loyal Customer">Loyal Customer</option>
+                    <option value="disloyal Customer">Disloyal Customer</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="Type_of_Travel" class="form-label">Type of Travel:</label>
+                <select class="form-select" id="Type_of_Travel" name="Type_of_Travel" required>
+                    <option value="Business travel">Business Travel</option>
+                    <option value="Personal Travel">Personal Travel</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="Class" class="form-label">Class:</label>
+                <select class="form-select" id="Class" name="Class" required>
+                    <option value="Eco">Eco</option>
+                    <option value="Eco Plus">Eco Plus</option>
+                    <option value="Business">Business</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="Inflight_wifi_service" class="form-label">Inflight Wifi Service:</label>
+                <input type="number" class="form-control" id="Inflight_wifi_service" name="Inflight_wifi_service" required>
+            </div>
+            <div class="mb-3">
+                <label for="Departure_Arrival_time_convenient" class="form-label">Departure/Arrival Time Convenient:</label>
+                <input type="number" class="form-control" id="Departure_Arrival_time_convenient" name="Departure_Arrival_time_convenient" required>
+            </div>
+            <div class="mb-3">
+                <label for="Ease_of_Online_booking" class="form-label">Ease of Online Booking:</label>
+                <input type="number" class="form-control" id="Ease_of_Online_booking" name="Ease_of_Online_booking" required>
+            </div>
+            <div class="mb-3">
+                <label for="Gate_location" class="form-label">Gate Location:</label>
+                <input type="number" class="form-control" id="Gate_location" name="Gate_location" required>
+            </div>
+            <div class="mb-3">
+                <label for="Food_and_drink" class="form-label">Food and Drink:</label>
+                <input type="number" class="form-control" id="Food_and_drink" name="Food_and_drink" required>
+            </div>
+            <div class="mb-3">
+                <label for="Online_boarding" class="form-label">Online Boarding:</label>
+                <input type="number" class="form-control" id="Online_boarding" name="Online_boarding" required>
+            </div>
+            <div class="mb-3">
+                <label for="Seat_comfort" class="form-label">Seat Comfort:</label>
+                <input type="number" class="form-control" id="Seat_comfort" name="Seat_comfort" required>
+            </div>
+            <div class="mb-3">
+                <label for="Inflight_entertainment" class="form-label">Inflight Entertainment:</label>
+                <input type="number" class="form-control" id="Inflight_entertainment" name="Inflight_entertainment" required>
+            </div>
+            <div class="mb-3">
+                <label for="On_board_service" class="form-label">On-board Service:</label>
+                <input type="number" class="form-control" id="On_board_service" name="On_board_service" required>
+            </div>
+            <div class="mb-3">
+                <label for="Leg_room_service" class="form-label">Leg Room Service:</label>
+                <input type="number" class="form-control" id="Leg_room_service" name="Leg_room_service" required>
+            </div>
+            <div class="mb-3">
+                <label for="Baggage_handling" class="form-label">Baggage Handling:</label>
+                <input type="number" class="form-control" id="Baggage_handling" name="Baggage_handling" required>
+            </div>
+            <div class="mb-3">
+                <label for="Checkin_service" class="form-label">Check-in Service:</label>
+                <input type="number" class="form-control" id="Checkin_service" name="Checkin_service" required>
+            </div>
+            <div class="mb-3">
+                <label for="Inflight_service" class="form-label">Inflight Service:</label>
+                <input type="number" class="form-control" id="Inflight_service" name="Inflight_service" required>
+            </div>
+            <div class="mb-3">
+                <label for="Cleanliness" class="form-label">Cleanliness:</label>
+                <input type="number" class="form-control" id="Cleanliness" name="Cleanliness" required>
+            </div>
+            <div class="mb-3">
+                <label for="Departure_Delay_in_Minutes" class="form-label">Departure Delay in Minutes:</label>
+                <input type="number" class="form-control" id="Departure_Delay_in_Minutes" name="Departure_Delay_in_Minutes" required>
+            </div>
+            <div class="mb-3">
+                <label for="Arrival_Delay_in_Minutes" class="form-label">Arrival Delay in Minutes:</label>
+                <input type="number" class="form-control" id="Arrival_Delay_in_Minutes" name="Arrival_Delay_in_Minutes" required>
+            </div>
+
+            <button type="button" id="predict-button" class="btn btn-primary w-100">Predict</button>
+        </form>
+
+        <div id="prediction-result" class="result text-center mt-4"></div>
+    </div>
+
+    <!-- jQuery AJAX script to call Flask API -->
+    <script>
+        $(document).ready(function () {
+            $('#predict-button').on('click', function (e) {
+                e.preventDefault();
+
+                // Lấy dữ liệu từ form
+                const formData = {
+                    "Age": $('#Age').val(),
+                    "Flight Distance": $('#Flight_Distance').val(),
+                    "Gender": $('#Gender').val(),
+                    "Customer Type": $('#Customer_Type').val(),
+                    "Type of Travel": $('#Type_of_Travel').val(),
+                    "Class": $('#Class').val(),
+                    "Inflight wifi service": $('#Inflight_wifi_service').val(),
+                    "Departure/Arrival time convenient": $('#Departure_Arrival_time_convenient').val(),
+                    "Ease of Online booking": $('#Ease_of_Online_booking').val(),
+                    "Gate location": $('#Gate_location').val(),
+                    "Food and drink": $('#Food_and_drink').val(),
+                    "Online boarding": $('#Online_boarding').val(),
+                    "Seat comfort": $('#Seat_comfort').val(),
+                    "Inflight entertainment": $('#Inflight_entertainment').val(),
+                    "On-board service": $('#On_board_service').val(),
+                    "Leg room service": $('#Leg_room_service').val(),
+                    "Baggage handling": $('#Baggage_handling').val(),
+                    "Checkin service": $('#Checkin_service').val(),
+                    "Inflight service": $('#Inflight_service').val(),
+                    "Cleanliness": $('#Cleanliness').val(),
+                    "Departure Delay in Minutes": $('#Departure_Delay_in_Minutes').val(),
+                    "Arrival Delay in Minutes": $('#Arrival_Delay_in_Minutes').val()
+                };
+
+                $.ajax({
+                    url: 'http://127.0.0.1:5000/predict',
+                    type: 'POST',
+                    data: JSON.stringify(formData),
+                    contentType: 'application/json',
+                    success: function (response) {
+                        let resultMessage = '';
+                        if (response.result === "Customer is Satisfied") {
+                            resultMessage = 'Customer is Satisfied (1)';
+                        } else {
+                            resultMessage = 'Customer is Neutral or Dissatisfied (0)';
+                        }
+                        $('#prediction-result').html('<h4>' + resultMessage + '</h4>');
+                    },
+                    error: function (error) {
+                        console.log("Error:", error);
+                        $('#prediction-result').html('<h4 class="text-danger">An error occurred. Please try again.</h4>');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- Bootstrap JS (with Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
